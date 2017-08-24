@@ -1,4 +1,5 @@
 from edc_pdutils.df_preppers import CrfDfPrepper
+from edc_pdutils.df_formatter import DfFormatter
 
 
 class Dialect:
@@ -31,6 +32,7 @@ class Dialect:
 class MaternalCrfDfPrepper(CrfDfPrepper):
 
     dialect_cls = Dialect
+    df_formatter_cls = DfFormatter
     visit_column = 'maternal_visit_id'
     visit_tbl = 'td_maternal_maternalvisit'
 

@@ -21,3 +21,4 @@ class CsvInfantCrfTablesExporter(CsvCrfTablesExporter):
     df_prepper_cls = InfantCrfDfPrepper
     delimiter = ','
     visit_column = 'infant_visit_id'
+    csv_date_format = '%Y-%m-%d'
