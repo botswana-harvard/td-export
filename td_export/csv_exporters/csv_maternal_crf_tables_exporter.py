@@ -22,3 +22,9 @@ class CsvMaternalCrfTablesExporter(CsvCrfTablesExporter):
     delimiter = ','
     visit_column = 'maternal_visit_id'
     csv_date_format = '%Y-%m-%d'
+
+    def __init__(self, **kwargs):
+        rx_mapping = {
+            'enc1:::c623fb3d561354d55cf9312c0cf840ebf199adc740115bbca80d7b8963500942': 'A',
+            'enc1:::f474f2b3e162ea58b01c89076309deb20d4a6c2779e93651c1fb110bef6e3468': 'B'}
+        super().__init__(rx_mapping=rx_mapping, **kwargs)
