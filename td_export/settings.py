@@ -77,12 +77,14 @@ WSGI_APPLICATION = 'td_export.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+# ssh -f django@td.bhp.org.bw -L5001:localhost:3306 -N
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': os.path.join(BASE_DIR, 'etc', 'mysql.conf'),
+        },
+    },
 }
 
 

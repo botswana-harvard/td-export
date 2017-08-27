@@ -1,6 +1,8 @@
 from edc_pdutils.csv_exporters import CsvCrfTablesExporter as Base
 from edc_pdutils.df_preppers import DfPrepper as DefaultPrepper
 
+from .td_csv_exporter import TdCsvExporter
+
 
 class CsvCrfTablesExporter(Base):
     """
@@ -19,4 +21,4 @@ class CsvCrfTablesExporter(Base):
     """
     df_prepper_cls = DefaultPrepper
     visit_column = 'maternal_visit_id'
-    delimiter = ','
+    csv_exporter_cls = TdCsvExporter

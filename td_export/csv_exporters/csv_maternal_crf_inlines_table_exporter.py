@@ -1,20 +1,11 @@
-from edc_pdutils.csv_exporters import CsvCrfTablesExporter
+from edc_pdutils.csv_exporters import CsvCrfInlineTablesExporter
 
 from ..df_preppers import MaternalCrfDfPrepper
 from .td_csv_exporter import TdCsvExporter
 
 
-class CsvMaternalCrfTablesExporter(CsvCrfTablesExporter):
-    """
-    Example Usage:
-        $ ssh -f django@td.bhp.org.bw -L5001:localhost:3306 -N
+class CsvMaternalCrfInlineTablesExporter(CsvCrfInlineTablesExporter):
 
-        >>>
-        from tc_export.csv_exporters import CsvMaternalCrfTablesExporter
-        tbl_exporter = CsvMaternalCrfTablesExporter(
-            app_label='td', exclude_history=True)
-
-    """
     df_prepper_cls = MaternalCrfDfPrepper
     visit_column = 'maternal_visit_id'
     csv_exporter_cls = TdCsvExporter

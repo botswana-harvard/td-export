@@ -1,4 +1,4 @@
-from edc_pdutils.df_preppers import CrfDialect
+from edc_pdutils.dialects import CrfDialect
 
 
 class MaternalCrfDialect(CrfDialect):
@@ -9,7 +9,7 @@ class MaternalCrfDialect(CrfDialect):
 
         This is for older EDC versions that use this schema.
         """
-        return (
+        sql = (
             'SELECT R.subject_identifier, R.screening_identifier, R.dob, R.gender, R.subject_type, '
             'RANDO.rx, '
             'ENROLL.enrollment_hiv_status, '
@@ -29,3 +29,4 @@ class MaternalCrfDialect(CrfDialect):
             f'LEFT JOIN {self.obj.enrollment_tbl} as ENROLL on ENROLL.registered_subject_id=R.id '
             f'LEFT JOIN {self.obj.rando_tbl} as RANDO on R.sid=RANDO.sid '
         )
+        return sql, None

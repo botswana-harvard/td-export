@@ -1,4 +1,4 @@
-from edc_pdutils.df_preppers import CrfDialect
+from edc_pdutils.dialects import CrfDialect
 
 
 class InfantCrfDialect(CrfDialect):
@@ -9,7 +9,7 @@ class InfantCrfDialect(CrfDialect):
 
         This is for older EDC versions that use this schema.
         """
-        return (
+        sql = (
             'SELECT R.subject_identifier, R.relative_identifier as maternal_identifier, '
             'R.dob, R.gender, R.subject_type, '
             'V.report_datetime as visit_datetime, A.appt_status, V.study_status, '
@@ -22,3 +22,4 @@ class InfantCrfDialect(CrfDialect):
             'LEFT JOIN edc_visit_schedule_visitdefinition as VDEF on A.visit_definition_id=VDEF.id '
             'LEFT JOIN edc_registration_registeredsubject as R on A.registered_subject_id=R.id '
         )
+        return sql, None

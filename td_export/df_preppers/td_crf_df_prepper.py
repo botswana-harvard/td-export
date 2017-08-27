@@ -1,9 +1,13 @@
 import pandas as pd
 
-from edc_pdutils.df_preppers import CrfDialect
+from edc_pdutils.df_preppers import CrfDfPrepper
+
+from ..constants import SYSTEM_COLUMNS
 
 
-class TdCrfDfPrepper(CrfDialect):
+class TdCrfDfPrepper(CrfDfPrepper):
+
+    system_columns = SYSTEM_COLUMNS
 
     def prepare_dataframe(self, **kwargs):
         super().prepare_dataframe(**kwargs)
