@@ -1,10 +1,10 @@
 from edc_pdutils.csv_exporters import CsvCrfTablesExporter
 
-from ..df_handlers import InfantCrfDfHandler
+from ..df_handlers import TdCrfDfHandler
 from .td_csv_exporter import TdCsvExporter
 
 
-class CsvInfantCrfTablesExporter(CsvCrfTablesExporter):
+class CsvLabTablesExporter(CsvCrfTablesExporter):
     """
     Example Usage:
         $ ssh -f django@td.bhp.org.bw -L5001:localhost:3306 -N
@@ -14,8 +14,9 @@ class CsvInfantCrfTablesExporter(CsvCrfTablesExporter):
         exporter = CsvInfantCrfTablesExporter()
         exporter.to_csv()
     """
-    app_label = 'td_'
-    df_handler_cls = InfantCrfDfHandler
-    visit_column = 'infant_visit_id'
+    app_label = 'td_lab'
+    df_handler_cls = TdCrfDfHandler
     csv_exporter_cls = TdCsvExporter
     exclude_history_tables = True
+    exclude_table_names = [
+        'td_maternal_maternalrequisition', 'td_infant_infantrequisition']

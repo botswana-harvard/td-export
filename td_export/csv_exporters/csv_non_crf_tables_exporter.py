@@ -1,6 +1,6 @@
 from edc_pdutils.csv_exporters import CsvNonCrfTablesExporter
-from edc_pdutils.df_preppers import DfPrepper as DefaultPrepper
 
+from ..df_handlers import TdNonCrfDfHandler
 from .td_csv_exporter import TdCsvExporter
 
 
@@ -11,8 +11,10 @@ class CsvNonCrfTablesExporter(CsvNonCrfTablesExporter):
 
         >>>
         from edc_pdutils.csv_exporters.tshilo_dikgotla import CsvCrfTablesExporter
-        tbl_exporter = TdCsvNonCrfTablesExporter(app_label='td', exclude_history=True)
+        exporter = TdCsvNonCrfTablesExporter()
+        exporter.to_csv()
 
     """
-    df_prepper_cls = DefaultPrepper
+    app_label = 'td'
+    df_handler_cls = TdNonCrfDfHandler
     csv_exporter_cls = TdCsvExporter
