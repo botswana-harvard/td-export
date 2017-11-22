@@ -1,3 +1,15 @@
+db.sqlite3
+.DS_Store
+etc/
+media/
+edc_pdutils/
+edc_export/
+td_export/etc/
+td_export/media/
+td_export/migrations/*
+.pydevproject
+.project
+.settings
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
