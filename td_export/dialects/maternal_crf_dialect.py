@@ -1,4 +1,4 @@
-from edc_pdutils.dialects import CrfDialect
+from edc_pdutils import CrfDialect
 
 
 class MaternalCrfDialect(CrfDialect):

@@ -1,6 +1,6 @@
-from edc_pdutils.csv_exporters import CsvExporter
+from edc_pdutils import CsvExporter
 
 
 class TdCsvExporter(CsvExporter):
     delimiter = ','
-    csv_date_format = '%Y-%m-%d'
+    date_format = '%Y-%m-%d'

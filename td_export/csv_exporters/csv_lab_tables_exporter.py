@@ -1,4 +1,4 @@
-from edc_pdutils.csv_exporters import CsvCrfTablesExporter
+from edc_pdutils import CsvCrfTablesExporter
 
 from ..df_handlers import TdCrfDfHandler
 from .td_csv_exporter import TdCsvExporter

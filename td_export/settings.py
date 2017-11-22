@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_crypto_fields.apps.AppConfig',
+    'django_extensions',
+    # 'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
-    'edc_export.apps.AppConfig',
     'edc_pdutils.apps.AppConfig',
     'td_export.apps.AppConfig',
 ]
