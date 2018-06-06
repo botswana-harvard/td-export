@@ -6,6 +6,10 @@ from ..df_handlers import TdNonCrfDfHandler
 from .td_csv_exporter import TdCsvExporter
 
 
+class InvalidTableName(Exception):
+    pass
+
+
 class CsvNonCrfTablesExporter(CsvTablesExporter):
     """
     Example Usage:
@@ -38,6 +42,29 @@ class CsvNonCrfTablesExporter(CsvTablesExporter):
                 columns={'id': 'registered_subject_id'})
         return self._df_registered_subject
 
+    def to_csv(self, table_names=None, export_folder=None, **kwargs):
+        """Exports all tables to CSV.
+        """
+        self.exported_paths = {}
+        export_folder = export_folder or self.export_folder
+        self.table_names.append('td_maternal_maternalconsent')
+        if table_names:
+            for table_name in table_names:
+                if table_name not in self.table_names:
+                    raise InvalidTableName(
+                        f'{table_name} is not a valid for {self}')
+            self.table_names = table_names
+        for table_name in self.table_names:
+            df = self.to_df(table_name=table_name, **kwargs)
+            exporter = self.csv_exporter_cls(
+                data_label=table_name,
+                export_folder=export_folder,
+                **kwargs)
+            path = exporter.to_csv(
+                dataframe=df, export_folder=export_folder)
+            if path:
+                self.exported_paths.update({table_name: path})
+
     def to_df(self, table_name=None, **kwargs):
         """Returns a dataframe after passing the raw df
         through the df_handler class.
@@ -48,8 +75,12 @@ class CsvNonCrfTablesExporter(CsvTablesExporter):
         columns = [
             col for col in rs_columns if col not in df_columns] + df_columns
         columns = [col for col in columns if not col.startswith('exported')]
-        df = pd.merge(df, self.df_registered_subject,
-                      on='registered_subject_id', how='left', suffixes=['', '_merged'])
+        if table_name == 'td_maternal_maternalconsent':
+            df = pd.merge(df, self.df_registered_subject,
+                          on='subject_identifier', how='left', suffixes=['', '_merged'])
+        else:
+            df = pd.merge(df, self.df_registered_subject,
+                          on='registered_subject_id', how='left', suffixes=['', '_merged'])
         df = df.loc[:, columns]
         if self.df_handler_cls:
             df_handler = self.df_handler_cls(
