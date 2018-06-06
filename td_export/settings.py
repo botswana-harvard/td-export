@@ -78,11 +78,16 @@ WSGI_APPLICATION = 'td_export.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 # ssh -f django@td.bhp.org.bw -L5001:localhost:3306 -N
+ETC = '/etc'
+
+print(os.path.join(ETC, 'td-export', 'mysql.conf'),
+      '***********************')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': os.path.join(BASE_DIR, 'etc', 'mysql.conf'),
+            'read_default_file': os.path.join(ETC, 'td-export', 'mysql.conf'),
         },
     },
 }
@@ -139,6 +144,7 @@ GIT_DIR = BASE_DIR
 if 'test' in sys.argv:
 
     class DisableMigrations:
+
         def __contains__(self, item):
             return True
 
