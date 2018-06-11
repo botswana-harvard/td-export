@@ -1,11 +1,11 @@
 git+https://github.com/botswana-harvard/edc-base.git@0.2.16#egg=edc_base
 git+https://github.com/botswana-harvard/edc-constants.git@0.2.6#egg=edc_constants
--e git+https://github.com/botswana-harvard/edc-pdutils.git@develop#egg=edc_pdutils
+git+https://github.com/botswana-harvard/edc-pdutils.git@develop#egg=edc_pdutils
 git+https://github.com/botswana-harvard/edc-pdutils.git@develop#egg=edc_export
 git+https://github.com/erikvw/django-crypto-fields.git@0.1.12#egg=django_crypto_fields
 git+https://github.com/erikvw/django-revision.git@0.1.13#egg=django_revision
 git+https://github.com/botswana-harvard/edc-device.git@0.2.4#egg=edc_device
+git+https://github.com/botswana-harvard/dmis-extract.git@develop#egg=dmis_extract
 notebook
 ipython
 Flask-SQLAlchemy
-dmis-extract
